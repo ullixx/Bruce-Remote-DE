@@ -212,11 +212,10 @@ identified board.
 
 ## Language
 
-The interface ships in **English and Brazilian Portuguese**. It follows the phone's
-language by default, and Config lets you pin one. Strings live in a String Catalog
-(`Localizable.xcstrings`); anything outside a SwiftUI `Text` goes through `L10n`, which
-resolves against the `.lproj` of the selected language.
-
+The app supports **German, English and Brazilian Portuguese**, plus the option to
+follow the device language. German is the default for fresh installations. The
+GitHub Actions build generates the German String Catalog before compiling the app;
+format placeholders are protected and checked during generation.
 ---
 
 ## Notes on device behaviour

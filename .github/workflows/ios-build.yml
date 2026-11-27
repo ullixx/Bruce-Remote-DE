@@ -2,7 +2,7 @@ name: Build iOS app
 
 on:
   push:
-    branches: [main]
+    branches: [main, feature/german-localization]
   pull_request:
   workflow_dispatch:
 
@@ -18,8 +18,10 @@ jobs:
           xcodebuild -version
           xcodebuild -list -project "Bruce Remote.xcodeproj"
 
-      # No shared scheme is committed, so build the target directly. No signing
-      # identity either (Config/Local.xcconfig is git-ignored), hence unsigned.
+      - name: Generate German localization
+        run: python3 scripts/localize_catalog.py
+
+      # The IPA is intentionally unsigned; it is signed on-device by SideInstaller.
       - name: Build (unsigned, Release)
         run: |
           xcodebuild build \
