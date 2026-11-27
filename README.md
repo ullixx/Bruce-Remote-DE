@@ -212,11 +212,10 @@ identified board.
 
 ## Language
 
-The app's own section holds the **language** picker and the **Advanced mode** toggle.
-German, English and Brazilian Portuguese are available as explicit language choices.
-The device-language option remains available as well. German localization is being
-prepared in the String Catalog; the default will be switched to German once the
-complete translation has been added and verified.
+The app supports **German, English and Brazilian Portuguese**, plus the option to
+follow the device language. German is the default for fresh installations. The
+GitHub Actions build generates the German String Catalog before compiling the app;
+format placeholders are protected and checked during generation.
 ---
 
 ## Notes on device behaviour
