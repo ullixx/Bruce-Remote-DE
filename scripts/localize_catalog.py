@@ -14,7 +14,7 @@ import urllib.request
 from pathlib import Path
 
 CATALOG = Path("BruceRemote/Localizable.xcstrings")
-PLACEHOLDER = re.compile(r"%(?:[0-9]+\\$)?(?:@|lld|ld|d|f|s|\\.\\*f|%)")
+PLACEHOLDER = re.compile(r"%(?:[0-9]+\$)?(?:@|lld|ld|d|f|s|\.\*f|%)")
 TOKEN = "ZXQBRUCEPH"
 TECHNICAL = re.compile(r"^[A-Z0-9 _./&()+:-]+$")
 
@@ -29,7 +29,7 @@ def translate_one(item):
         return token
     protected = PLACEHOLDER.sub(protect, value)
     params = urllib.parse.urlencode({
-        "client": "gtx", "sl": "pt", "tl": "de", "dt": "t", "q": protected
+        "client": "gtx", "sl": "auto", "tl": "de", "dt": "t", "q": protected
     })
     url = "https://translate.googleapis.com/translate_a/single?" + params
     last_error = None
@@ -41,7 +41,7 @@ def translate_one(item):
             translated = "".join(part[0] for part in payload[0] if part and part[0])
             for index, original in enumerate(placeholders):
                 translated = translated.replace(f"{TOKEN}{index}ZXQ", original)
-            if PLACEHOLDER.findall(value) != PLACEHOLDER.findall(translated):
+            if sorted(PLACEHOLDER.findall(value)) != sorted(PLACEHOLDER.findall(translated)):
                 raise ValueError("format placeholders changed")
             return key, translated
         except Exception as exc:
