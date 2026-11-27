@@ -67,7 +67,7 @@ final class AppSettings: ObservableObject {
         self.defaults = defaults
         advancedMode = defaults.bool(forKey: Key.advancedMode)
         language = defaults.string(forKey: Key.language)
-            .flatMap(AppLanguage.init(rawValue:)) ?? .system
+            .flatMap(AppLanguage.init(rawValue:)) ?? .german
         L10n.use(language)
     }
 }
