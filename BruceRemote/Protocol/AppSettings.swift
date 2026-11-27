@@ -3,6 +3,7 @@ import SwiftUI
 /// The interface language, either following the phone or pinned by the user.
 enum AppLanguage: String, CaseIterable, Identifiable {
     case system
+    case german
     case portuguese
     case english
 
@@ -12,6 +13,7 @@ enum AppLanguage: String, CaseIterable, Identifiable {
     var locale: Locale? {
         switch self {
         case .system:     return nil
+        case .german:     return Locale(identifier: "de")
         case .portuguese: return Locale(identifier: "pt-BR")
         case .english:    return Locale(identifier: "en")
         }
@@ -22,6 +24,7 @@ enum AppLanguage: String, CaseIterable, Identifiable {
     var label: LocalizedStringKey {
         switch self {
         case .system:     return "Idioma do aparelho"
+        case .german:     return "Deutsch"
         case .portuguese: return "Português (Brasil)"
         case .english:    return "English"
         }
